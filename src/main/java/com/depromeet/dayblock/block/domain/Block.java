@@ -25,7 +25,7 @@ public class Block {
 
     private String title;
 
-    private List<String> memo;
+    private String memo;
 
     private String link;
 

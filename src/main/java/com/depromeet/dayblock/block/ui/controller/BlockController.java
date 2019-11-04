@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-
 @Api(value = "Block")
 @CrossOrigin(origins = {"*"})
 @RestController
@@ -21,7 +19,7 @@ public class BlockController {
 
     @ApiOperation("새로운 블럭을 생성합니다. 인증이 필요한 요청입니다.")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/")
+    @PostMapping("/create")
     public Long createBlock(@RequestBody BlockCreateRequest blockCreateRequest) {
         return blockService.createBlock(blockCreateRequest);
     }
@@ -41,14 +39,14 @@ public class BlockController {
 
     @ApiOperation("기존 블럭의 순서를 갱신합니다. 인증이 필요한 요청입니다.")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/")
+    @PutMapping("/update/order")
     public void updateBlockOrder(@RequestBody BlockUpdateOrderRequest blockUpdateOrderRequest) {
         blockService.updateBlockOrder(blockUpdateOrderRequest);
     }
 
     @ApiOperation("기존 블럭의 수행 시간을 갱신합니다. 인증이 필요한 요청입니다.")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/")
+    @PutMapping("/update/time")
     public void updateBlockTime(@RequestBody BlockUpdateTimeRequest blockUpdateTimeRequest) {
         blockService.updateBlockTime(blockUpdateTimeRequest); // 10:15
     }
