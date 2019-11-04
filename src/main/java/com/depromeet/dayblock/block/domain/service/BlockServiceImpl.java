@@ -6,6 +6,7 @@ import com.depromeet.dayblock.block.domain.repository.BlockRepository;
 import com.depromeet.dayblock.block.ui.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BlockServiceImpl implements BlockService{
 
     private final BlockResponse blockResponse;
