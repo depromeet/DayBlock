@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = {"*"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/block")
+@RequestMapping("/api/block")
 public class BlockController {
 
     private final BlockService blockService;
