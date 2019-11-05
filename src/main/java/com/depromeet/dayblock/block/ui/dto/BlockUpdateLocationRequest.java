@@ -3,9 +3,9 @@ package com.depromeet.dayblock.block.ui.dto;
 import lombok.Getter;
 
 @Getter
-public class BlockUpdateOrderRequest {
+public class BlockUpdateLocationRequest {
 
     private Long id;
 
-    private int order;
+    private int location;
 }

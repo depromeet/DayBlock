@@ -14,7 +14,7 @@ public interface BlockRepository {
 
     void update(Long id, Block block);
 
-    void updateOrder(Long id, int order);
+    void updateLocation(Long id, int location);
 
     void updateTime(Long id, LocalTime startTime, LocalTime endTime);
 

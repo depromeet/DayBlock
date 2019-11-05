@@ -4,7 +4,7 @@ import com.depromeet.dayblock.block.ui.dto.BlockCreateRequest;
 import com.depromeet.dayblock.block.ui.dto.BlockResponse;
 import com.depromeet.dayblock.block.ui.dto.BlockUpdateRequest;
 import com.depromeet.dayblock.block.ui.dto.BlockUpdateTimeRequest;
-import com.depromeet.dayblock.block.ui.dto.BlockUpdateOrderRequest;
+import com.depromeet.dayblock.block.ui.dto.BlockUpdateLocationRequest;
 
 public interface BlockService {
 
@@ -14,7 +14,7 @@ public interface BlockService {
 
     void updateBlock(BlockUpdateRequest blockUpdateRequest);
 
-    void updateBlockOrder(BlockUpdateOrderRequest blockUpdateOrderRequest);
+    void updateBlockLocation(BlockUpdateLocationRequest blockUpdateLocationRequest);
 
     void updateBlockTime(BlockUpdateTimeRequest blockUpdateTimeRequest);
 

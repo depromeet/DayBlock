@@ -28,7 +28,7 @@ public class Block {
 
     private String link;
 
-    private int order;
+    private int location;
 
     // @OneToMany
     // private User owner;

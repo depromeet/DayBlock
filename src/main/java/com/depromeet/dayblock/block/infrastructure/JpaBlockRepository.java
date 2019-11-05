@@ -40,10 +40,10 @@ public class JpaBlockRepository implements BlockRepository {
     }
 
     @Override
-    public void updateOrder(Long id, int order) {
+    public void updateLocation(Long id, int location) {
         em.getTransaction().begin();
         Block block = em.find(Block.class, id);
-        block.setOrder(order);
+        block.setLocation(location);
         em.getTransaction().commit();
         em.close();
     }

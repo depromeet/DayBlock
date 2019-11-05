@@ -29,15 +29,17 @@ public class BlockServiceImpl implements BlockService{
     @Override
     public BlockResponse getBlocksByDate(String category, String scheduledDate) {
         List<Block> blocks = blockRepository.findByDate(category, LocalDate.parse(scheduledDate));
-        blockResponse
-                .splitByStatus("todo", blocks.stream().filter(b->b.getBlockStatus() == BlockStatus.TODO)
-                        .collect(Collectors.toList()));
-        blockResponse
-                .splitByStatus("urgency", blocks.stream().filter(b->b.getBlockStatus() == BlockStatus.URGENCY)
-                        .collect(Collectors.toList()));
-        blockResponse
-                .splitByStatus("complete", blocks.stream().filter(b->b.getBlockStatus() == BlockStatus.COMPLETE)
-                        .collect(Collectors.toList()));
+        if (!blocks.isEmpty()) {
+            blockResponse
+                    .splitByStatus("todo", blocks.stream().filter(b->b.getBlockStatus() == BlockStatus.TODO)
+                            .collect(Collectors.toList()));
+            blockResponse
+                    .splitByStatus("urgency", blocks.stream().filter(b->b.getBlockStatus() == BlockStatus.URGENCY)
+                            .collect(Collectors.toList()));
+            blockResponse
+                    .splitByStatus("complete", blocks.stream().filter(b->b.getBlockStatus() == BlockStatus.COMPLETE)
+                            .collect(Collectors.toList()));
+        }
         return blockResponse;
     }
 
@@ -47,8 +49,8 @@ public class BlockServiceImpl implements BlockService{
     }
 
     @Override
-    public void updateBlockOrder(BlockUpdateOrderRequest blockUpdateOrderRequest) {
-        blockRepository.updateOrder(blockUpdateOrderRequest.getId(), blockUpdateOrderRequest.getOrder());
+    public void updateBlockLocation(BlockUpdateLocationRequest blockUpdateLocationRequest) {
+        blockRepository.updateLocation(blockUpdateLocationRequest.getId(), blockUpdateLocationRequest.getLocation());
     }
 
     @Override
