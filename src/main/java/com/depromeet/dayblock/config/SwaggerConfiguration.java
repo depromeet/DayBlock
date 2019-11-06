@@ -1,4 +1,4 @@
-package com.depromeet.dayblock.configuration;
+package com.depromeet.dayblock.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

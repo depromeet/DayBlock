@@ -1,6 +1,5 @@
 package com.depromeet.dayblock.block.ui.controller;
 
-import com.depromeet.dayblock.block.domain.Block;
 import com.depromeet.dayblock.block.domain.BlockStatus;
 import com.depromeet.dayblock.block.domain.service.BlockService;
 import com.depromeet.dayblock.block.ui.dto.*;
@@ -12,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
 
 @Api(value = "Block")
 @CrossOrigin(origins = {"*"})
@@ -33,7 +30,7 @@ public class BlockController {
 
     @ApiOperation("날짜에 따라 블럭을 조회합니다. 인증이 필요한 요청입니다.")
     @GetMapping("/{category}")
-    public HashMap<String, List<Block>> getBlocks(
+    public BlockResponse getBlocks(
             @PathVariable String category,
             @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
             @RequestParam LocalDate scheduledDate) {
