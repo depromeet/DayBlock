@@ -1,6 +1,8 @@
 package com.depromeet.dayblock.block.infrastructure;
 
 import com.depromeet.dayblock.block.domain.Block;
+import com.depromeet.dayblock.block.domain.BlockPriority;
+import com.depromeet.dayblock.block.domain.BlockStatus;
 import com.depromeet.dayblock.block.domain.repository.BlockRepository;
 import org.springframework.stereotype.Repository;
 
@@ -32,35 +34,41 @@ public class JpaBlockRepository implements BlockRepository {
     }
 
     @Override
-    public void update(Long id, Block block) {
-        em.getTransaction().begin();
-        em.merge(block);
-        em.getTransaction().commit();
-        em.close();
+    public void update(Long id, String title, String memo, String link, BlockPriority priority, String category) {
+        Block block = em.find(Block.class, id);
+        block.setTitle(title);
+        block.setMemo(memo);
+        block.setLink(link);
+        block.setPriority(priority);
+        block.setCategory(category);
+        em.persist(block);
     }
 
     @Override
     public void updateLocation(Long id, int location) {
-        em.getTransaction().begin();
         Block block = em.find(Block.class, id);
         block.setLocation(location);
-        em.getTransaction().commit();
-        em.close();
+        em.persist(block);
     }
 
     @Override
     public void updateTime(Long id, LocalTime startTime, LocalTime endTime) {
-        em.getTransaction().begin();
         Block block = em.find(Block.class, id);
         block.setStartTime(startTime);
         block.setEndTime(endTime);
-        em.getTransaction().commit();
-        em.close();
+        em.persist(block);
+    }
+
+    @Override
+    public void updateBlockStatus(Long id, BlockStatus blockStatus) {
+        Block block = em.find(Block.class, id);
+        block.setBlockStatus(blockStatus);
+        em.persist(block);
     }
 
     @Override
     public void remove(Long id) {
-        Block block = em.find(Block.class, "id");
+        Block block = em.find(Block.class, id);
         em.remove(block);
     }
 }
