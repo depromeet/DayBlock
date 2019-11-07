@@ -1,5 +1,6 @@
 package com.depromeet.dayblock.block.domain;
 
+import com.depromeet.dayblock.auth.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,11 @@ public class Block {
     @Column(name = "block_id")
     private Long id;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 30)
     private String title;
+
+    @Column(nullable = false, length = 50)
+    private String note;
 
     private String memo;
 
@@ -30,12 +34,8 @@ public class Block {
     @Column(nullable = false)
     private int location;
 
-    // @OneToMany
-    // private User owner;
-
-    @Column(nullable = false, length = 10)
-    @Enumerated(EnumType.STRING)
-    private BlockPriority priority;
+    @ManyToOne
+    private User user;
 
     @Column(name = "scheduled_date", nullable = false)
     private LocalDate scheduledDate;
@@ -55,9 +55,6 @@ public class Block {
     public void validate() {
         if (this.title.isEmpty()) {
             throw new IllegalArgumentException("'title' 값을 입력해주세요.");
-        }
-        if (this.priority == null) {
-            throw new IllegalArgumentException("'priority' 값을 입력해주세요.");
         }
         if (this.scheduledDate == null) {
             throw new IllegalArgumentException("'scheduledDate' 값을 입력해주세요.");

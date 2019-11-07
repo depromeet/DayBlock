@@ -1,5 +1,6 @@
 package com.depromeet.dayblock.auth.entity;
 
+import com.depromeet.dayblock.block.domain.Block;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,5 +42,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<UserTeam> userTeams = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Block> blocks = new ArrayList<>();
 }
 

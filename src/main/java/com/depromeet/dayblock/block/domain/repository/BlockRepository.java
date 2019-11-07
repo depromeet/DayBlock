@@ -1,7 +1,6 @@
 package com.depromeet.dayblock.block.domain.repository;
 
 import com.depromeet.dayblock.block.domain.Block;
-import com.depromeet.dayblock.block.domain.BlockPriority;
 import com.depromeet.dayblock.block.domain.BlockStatus;
 
 import java.time.LocalDate;
@@ -14,7 +13,7 @@ public interface BlockRepository {
 
     List<Block> findByDate(String category, LocalDate date);
 
-    void update(Long id, String title, String memo, String link, BlockPriority priority, String category);
+    void update(Long id, String title, String note, String memo, String link, String category);
 
     void updateLocation(Long id, int location);
 

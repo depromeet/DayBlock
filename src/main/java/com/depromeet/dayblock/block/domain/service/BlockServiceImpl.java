@@ -1,5 +1,8 @@
 package com.depromeet.dayblock.block.domain.service;
 
+import com.depromeet.dayblock.auth.EmailInvalidException;
+import com.depromeet.dayblock.auth.entity.User;
+import com.depromeet.dayblock.auth.repository.UserRepository;
 import com.depromeet.dayblock.block.domain.Block;
 import com.depromeet.dayblock.block.domain.BlockStatus;
 import com.depromeet.dayblock.block.domain.repository.BlockRepository;
@@ -11,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,17 +23,18 @@ public class BlockServiceImpl implements BlockService{
 
     private final BlockResponse blockResponse;
     private final BlockRepository blockRepository;
-    // private final userRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
-    public Long createBlock(BlockCreateRequest blockRequest) {
+    public Long createBlock(BlockCreateRequest blockRequest) throws EmailInvalidException {
+        User user = userRepository.findByEmail(blockRequest.getEmail()).orElseThrow(EmailInvalidException::new);
         Block block = Block.builder()
                 .title(blockRequest.getTitle())
+                .note(blockRequest.getNote())
                 .memo(blockRequest.getMemo())
                 .link(blockRequest.getLink())
                 .location(blockRequest.getLocation())
-                // .owner(userRepository.findByEmail(blockRequest.getEmail()))
-                .priority(blockRequest.getPriority())
+                .user(user)
                 .scheduledDate(blockRequest.getScheduledDate())
                 .startTime(blockRequest.getStartTime())
                 .endTime(blockRequest.getEndTime())
@@ -65,9 +68,9 @@ public class BlockServiceImpl implements BlockService{
         blockRepository.update(
                 blockUpdateRequest.getId(),
                 blockUpdateRequest.getTitle(),
+                blockUpdateRequest.getNote(),
                 blockUpdateRequest.getMemo(),
                 blockUpdateRequest.getLink(),
-                blockUpdateRequest.getPriority(),
                 blockUpdateRequest.getCategory()
         );
     }

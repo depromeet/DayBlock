@@ -1,6 +1,5 @@
 package com.depromeet.dayblock.block.ui.dto;
 
-import com.depromeet.dayblock.block.domain.BlockPriority;
 import com.depromeet.dayblock.block.domain.BlockStatus;
 import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,6 +12,8 @@ public class BlockCreateRequest {
 
     private String title;
 
+    private String note;
+
     private String memo;
 
     private String link;
@@ -20,8 +21,6 @@ public class BlockCreateRequest {
     private int location;
 
     private String email;
-
-    private BlockPriority priority;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate scheduledDate;

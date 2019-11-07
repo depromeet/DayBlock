@@ -1,5 +1,6 @@
 package com.depromeet.dayblock.block.ui.controller;
 
+import com.depromeet.dayblock.auth.EmailInvalidException;
 import com.depromeet.dayblock.block.domain.BlockStatus;
 import com.depromeet.dayblock.block.domain.service.BlockService;
 import com.depromeet.dayblock.block.ui.dto.*;
@@ -24,7 +25,7 @@ public class BlockController {
     @ApiOperation("새로운 블럭을 생성합니다. 인증이 필요한 요청입니다.")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public Long createBlock(@RequestBody BlockCreateRequest blockCreateRequest) {
+    public Long createBlock(@RequestBody BlockCreateRequest blockCreateRequest) throws EmailInvalidException {
         return blockService.createBlock(blockCreateRequest);
     }
 

@@ -1,5 +1,6 @@
 package com.depromeet.dayblock.block.domain.service;
 
+import com.depromeet.dayblock.auth.EmailInvalidException;
 import com.depromeet.dayblock.block.domain.BlockStatus;
 import com.depromeet.dayblock.block.ui.dto.BlockCreateRequest;
 import com.depromeet.dayblock.block.ui.dto.BlockResponse;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 
 public interface BlockService {
 
-    Long createBlock(BlockCreateRequest blockRequest);
+    Long createBlock(BlockCreateRequest blockRequest) throws EmailInvalidException;
 
     BlockResponse getBlocksByDate(String category, LocalDate scheduledDate);
 

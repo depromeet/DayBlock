@@ -1,7 +1,6 @@
 package com.depromeet.dayblock.block.infrastructure;
 
 import com.depromeet.dayblock.block.domain.Block;
-import com.depromeet.dayblock.block.domain.BlockPriority;
 import com.depromeet.dayblock.block.domain.BlockStatus;
 import com.depromeet.dayblock.block.domain.repository.BlockRepository;
 import org.springframework.stereotype.Repository;
@@ -34,12 +33,12 @@ public class JpaBlockRepository implements BlockRepository {
     }
 
     @Override
-    public void update(Long id, String title, String memo, String link, BlockPriority priority, String category) {
+    public void update(Long id, String title, String note, String memo, String link, String category) {
         Block block = em.find(Block.class, id);
         block.setTitle(title);
+        block.setNote(note);
         block.setMemo(memo);
         block.setLink(link);
-        block.setPriority(priority);
         block.setCategory(category);
         em.persist(block);
     }
