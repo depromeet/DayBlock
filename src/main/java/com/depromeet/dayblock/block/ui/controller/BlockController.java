@@ -33,7 +33,7 @@ public class BlockController {
     @GetMapping("/{category}")
     public BlockResponse getBlocks(
             @PathVariable String category,
-            @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+            @DateTimeFormat(pattern = "yyyy-MM-dd")
             @RequestParam LocalDate scheduledDate) {
         return blockService.getBlocksByDate(category, scheduledDate);
     }
